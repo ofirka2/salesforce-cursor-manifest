@@ -1,0 +1,43 @@
+cat > .gitignore << 'EOF'
+# SALESFORCE METADATA (DO NOT COMMIT - TOO LARGE)
+force-app/
+
+# GENERATED REPORTS (ORG-SPECIFIC)
+reports/
+*.md
+!README.md
+!manifest/README.md
+
+# SALESFORCE DIRECTORIES
+.sfdx/
+.sf/
+.localdevserver/
+config/
+
+# PROJECT FILES (NOT NEEDED FOR TEAM)
+sfdx-project.json
+package.json
+package-lock.json
+node_modules/
+
+# LOGS
+*.log
+logs/
+/tmp/
+
+# OS FILES
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE FILES
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ENVIRONMENT FILES
+.env
+.env.local
+EOF

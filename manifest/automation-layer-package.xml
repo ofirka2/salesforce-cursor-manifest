@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!-- All automation and business logic -->
+    <types><name>ApexClass</name><members>*</members></types>
+    <types><name>ApexTrigger</name><members>*</members></types>
+    <types><name>ApexComponent</name><members>*</members></types>
+    <types><name>Flow</name><members>*</members></types>
+    <types><name>FlowDefinition</name><members>*</members></types>
+    <types><name>Workflow</name><members>*</members></types>
+    <types><name>WorkflowAlert</name><members>*</members></types>
+    <types><name>WorkflowFieldUpdate</name><members>*</members></types>
+    <types><name>WorkflowOutboundMessage</name><members>*</members></types>
+    <types><name>WorkflowRule</name><members>*</members></types>
+    <types><name>ProcessBuilder</name><members>*</members></types>
+    <types><name>AssignmentRules</name><members>*</members></types>
+    <types><name>AutoResponseRules</name><members>*</members></types>
+    <types><name>EscalationRules</name><members>*</members></types>
+    <version>60.0</version>
+</Package>

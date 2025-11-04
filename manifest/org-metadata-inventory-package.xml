@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!-- Org-wide settings and configuration -->
+    <types><name>CustomObject</name><members>*</members></types>
+    <types><name>CustomField</name><members>*</members></types>
+    <types><name>RecordType</name><members>*</members></types>
+    <types><name>BusinessProcess</name><members>*</members></types>
+    <types><name>CompactLayout</name><members>*</members></types>
+    <types><name>CustomMetadata</name><members>*</members></types>
+    <types><name>Settings</name><members>*</members></types>
+    <version>60.0</version>
+</Package>

@@ -1,0 +1,95 @@
+# Salesforce Org Investigation - Automated Retrieval Rules
+
+## Project Context
+This is a Salesforce org documentation and analysis project. We are retrieving metadata from a full sandbox in phases to enable thorough investigation.
+
+## Retrieval Phases (Execute in Order)
+
+### Phase Execution Rules
+1. Execute phases sequentially - wait for completion before starting next phase
+2. After each phase completes, verify the retrieval and report summary
+3. If a phase fails, retry once with increased wait time before proceeding
+4. Generate a summary markdown file after each phase
+
+### Phase 1: Foundation
+**Priority: CRITICAL**
+```bash
+sf project retrieve start \
+  --manifest manifest/org-metadata-inventory.package.xml \
+  --target-metadata-dir force-app/1-foundation \
+
+
+Phase 2: Automation Layer
+Priority: CRITICAL
+sf project retrieve start \
+  --manifest manifest/automation-layer.package.xml \
+  --target-metadata-dir force-app/2-automation \
+
+
+Success Criteria: ApexClasses, ApexTriggers, Flows retrieved
+Post-Retrieval: Generate summary of automation count by type
+
+Phase 3: User Interface
+Priority: HIGH
+sf project retrieve start \
+  --manifest manifest/ui-components.package.xml \
+  --target-metadata-dir force-app/3-ui \
+
+Success Criteria: LWC, Aura, Pages, Layouts retrieved
+Post-Retrieval: Generate summary of UI components
+
+Phase 4: Integration & Security
+Priority: HIGH
+sf project retrieve start \
+  --manifest manifest/integration-security.package.xml \
+  --target-metadata-dir force-app/4-integration \
+
+Success Criteria: NamedCredentials, PermissionSets, Profiles retrieved
+Post-Retrieval: List all external integrations found
+
+Phase 5: Communication
+Priority: MEDIUM
+sf project retrieve start \
+  --manifest manifest/email-templates-documents.package.xml \
+  --target-metadata-dir force-app/5-communication \
+
+Success Criteria: EmailTemplates, StaticResources retrieved
+Post-Retrieval: Count email templates by folder
+
+Phase 6: Testing & Quality
+Priority: LOW
+sf project retrieve start \
+  --manifest manifest/test-quality.package.xml \
+  --target-metadata-dir force-app/6-testing \
+
+Success Criteria: ValidationRules, DuplicateRules retrieved
+Post-Retrieval: Generate data quality summary
+
+Post-Retrieval Analysis Tasks
+After ALL phases complete:
+
+Generate comprehensive metadata inventory (METADATA_INVENTORY.md)
+Create object relationship diagram
+Identify technical debt (deprecated API usage, Aura → LWC candidates)
+Map all external integrations
+Create automation complexity matrix
+Generate migration readiness report
+Error Handling
+If retrieval times out, retry once
+If metadata type not found, skip and document in errors.log
+Continue to next phase even if current phase has non-critical errors
+Reporting Format
+After each phase, create: reports/phase-{N}-summary.md with:
+
+Retrieval duration
+Metadata counts by type
+Notable findings
+Any errors or warnings
+Agent Behavior
+Run phases autonomously without user intervention
+Provide progress updates after each phase
+Generate technical analysis reports only (no business recommendations)
+Stop and alert user only if critical error occurs
+Focus on factual, technical findings
+
+
